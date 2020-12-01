@@ -1,20 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Jumbotron from "../Components/Jumbotron/Jumbotron";
+import { List, ListItem } from "../Components/List/List";
+import DeleteBtn from "../Components/DeleteBtn/DeleteBtn";
+import API from "../Utils/API";
+
+
 import "./saved.css";
 
 function Saved() {
-    return (
-        <div>
-            <h2>Saved Books</h2>
-            <br></br>
-            <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
-        </div>
-    );
-}
+    // Setting our component's initial state
+    const [books, setBooks] = useState([])
 
-export default Saved
+  
+    // Load all books and store them with setBooks
+    useEffect(() => {
+      loadBooks()
+    }, [])
+  
+    // Loads all books and sets them to books
+    function loadBooks() {
+      API.getBooks()
+        .then(res => 
+          setBooks(res.data)
+        )
+        .catch(err => console.log(err));
+    };
+  
+  
+      return (
+          <div>
+              <Jumbotron>
+                <h1>Saved Books</h1>
+              </Jumbotron>
+              {books.length ? (
+                <List>
+                  {books.map(book => {
+                    return (
+                      <ListItem key={book._id}>
+                        <a href={"/books/" + book._id}>
+                          <strong>
+                            {book.title} by {book.author}
+                          </strong>
+                        </a>
+                        <DeleteBtn onClick={() =>{}} />
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              ) : (
+                <h3 style={{marginLeft: 120}}>No Results to Display</h3>
+              )}
+            </div>
+        
+      );
+    }
+  
+  
+  export default Saved;
+  

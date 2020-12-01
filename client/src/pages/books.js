@@ -4,12 +4,12 @@ import DeleteBtn from "../Components/DeleteBtn/DeleteBtn";
 import API from "../Utils/API";
 import { Col, Row, Container } from "../Components/Grid/Grid";
 import { List, ListItem } from "../Components/List/List";
-import { Input, TextArea, FormBtn } from "../Components/Form/Form";
+import { Input, FormBtn } from "../Components/Form/Form";
 
 function BooksSaved() {
   // Setting our component's initial state
   const [books, setBooks] = useState([])
-  const [formObject, setFormObject] = useState({})
+  const [formObject] = useState({})
 
   // Load all books and store them with setBooks
   useEffect(() => {
@@ -29,25 +29,15 @@ function BooksSaved() {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
-              <h1>What Books Should I Read?</h1>
+              <h1>Book Search</h1>
             </Jumbotron>
             <form>
               <Input
                 onChange={() => {}}
                 name="title"
                 placeholder="Title (required)"
-              />
-              <Input
-                onChange={() => {}}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                onChange={() => {}}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
               />
               <FormBtn
                 disabled={!(formObject.author && formObject.title)}
@@ -56,10 +46,11 @@ function BooksSaved() {
                 Submit Book
               </FormBtn>
             </form>
-          </Col>
-          <Col size="md-6 sm-12">
+            <br></br>
+            <br></br>
+            <br></br>
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Results</h1>
             </Jumbotron>
             {books.length ? (
               <List>
@@ -77,7 +68,7 @@ function BooksSaved() {
                 })}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
+              <h3 style={{marginLeft: 120}}>No Results to Display</h3>
             )}
           </Col>
         </Row>

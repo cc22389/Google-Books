@@ -1,5 +1,17 @@
 .header {
     background-image: url("booklight.jpg");
-    margin: 30px;
-    color: white;
+    color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
 } 
+
+p {
+    font-size: 25px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .header {
+    color: white;
+  }
+}
