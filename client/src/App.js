@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import Jumbotron from "./Components/Jumbotron/Jumbotron";
-import Nav from "./Components/Nav/Nav";
+import Books from "./pages/books" 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Search from "./pages/searched";
+// import Search from "./pages/searched";
 import Saved from "./pages/saved";
+import Nav from "./Components/Nav/Nav";
+import Header from "./Components/Header/Header";
 
 
 class App extends Component {
@@ -13,10 +14,11 @@ class App extends Component {
       <Router>
         <div>
         <Nav />
-        <Jumbotron />
+        <Header />
+        <Books />
         <Switch>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/searched" component={Search} />
+          {/* <Route exact path="/" component={Search} />
+          <Route exact path="/searched" component={Search} /> */}
           <Route exaxt path="/saved" component={Saved} />
         </Switch>
       </div>
