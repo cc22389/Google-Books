@@ -20,7 +20,7 @@ function BooksSaved() {
   function loadBooks() {
     API.getBooks()
       .then(res => 
-        setBooks(res.data)
+        setBooks(res.items)
       )
       .catch(err => console.log(err));
   };
@@ -52,14 +52,14 @@ function BooksSaved() {
             <Jumbotron>
               <h1>Results</h1>
             </Jumbotron>
-            {books.length ? (
+            {/* {books.length ? (
               <List>
                 {books.map(book => {
                   return (
                     <ListItem key={book._id}>
-                      <a href={"/books/" + book._id}>
+                      <a href={"/googlebooks/" + book._id}>
                         <strong>
-                          {book.title} by {book.author}
+                          {book.volumeInfo.title} by {book.volumeInfo.authors}
                         </strong>
                       </a>
                       <DeleteBtn onClick={() =>{}} />
@@ -69,7 +69,7 @@ function BooksSaved() {
               </List>
             ) : (
               <h3 style={{marginLeft: 120}}>No Results to Display</h3>
-            )}
+            )} */}
           </Col>
         </Row>
       </Container>
